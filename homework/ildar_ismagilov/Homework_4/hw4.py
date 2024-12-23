@@ -1,6 +1,6 @@
 import pprint
 
-#creating my_dict
+# creating my_dict
 my_dict = {
     'tuple': (1, 2, True, 'test', "OK, let's go!"),
     'list': [False, 'test2', '', 0, 1.5],
@@ -20,7 +20,7 @@ print('-' * 25)
 my_dict['list'].append('another element')
 my_dict['list'].pop(1)
 # manipulations with dict-key
-my_dict['dict']['i am a tuple'] = 'NOT A TUPLE!!!'
+my_dict['dict'][('i am a tuple',)] = 'asdf'
 del my_dict['dict'][3]
 # manipulations with set-key
 my_dict['set'].add(True)
