@@ -111,5 +111,4 @@ bouquet1 = Bouquet([rose1, rose2, lily1])
 print(f'The price of bouquet is {bouquet1.bouquet_price()}$.')
 print(f'The average lifetime of the bouqeut is {bouquet1.average_ttl()} hours.')
 print(f'The bouquet is sorte by price: {bouquet1.sorting_bouquet("price")}')
-print(f'Searching white color flower in the bouquet: '
-      f'{bouquet1.search_flower('color', 'white')}.')
+print(f"Searching white color flower in the bouquet: {bouquet1.search_flower('color', 'white')}")
