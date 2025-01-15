@@ -44,14 +44,7 @@ class Bouquet:
         return sum([flower.average_lifetime for flower in self.flowers_list]) // len(self.flowers_list)
 
     def sorting_bouquet(self, sorting_parameter):
-        if sorting_parameter == 'freshness':
-            self.flowers_list.sort(key=lambda x: x.freshness)
-        elif sorting_parameter == 'color':
-            self.flowers_list.sort(key=lambda x: x.color)
-        elif sorting_parameter == 'stem_length':
-            self.flowers_list.sort(key=lambda x: x.stem_length)
-        elif sorting_parameter == 'price':
-            self.flowers_list.sort(key=lambda x: x.price)
+        self.flowers_list.sort(key=lambda x: getattr(x, sorting_parameter))
         return self.flowers_list
 
     def search_flower(self, searching_parameter, value):
