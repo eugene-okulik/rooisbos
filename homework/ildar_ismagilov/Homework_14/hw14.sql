@@ -1,9 +1,10 @@
-INSERT INTO students (name, second_name, group_id) VALUES ('Corben', 'Dallas', 142)
+INSERT INTO students (name, second_name) VALUES ('Corben', 'Dallas')
 
 INSERT INTO books (title, taken_by_student_id) VALUES ('The Holy Bible', 311)
 INSERT INTO books (title, taken_by_student_id) VALUES ('Crime and punishment', 311)
 
 INSERT INTO `groups` (title, start_date, end_date) VALUES ('Modern talking', '01/15/2025', '01/15/2026')
+UPDATE students SET group_id = 186 WHERE id = 311
 
 INSERT INTO subjets (title) VALUES ('Python 101')
 INSERT INTO subjets (title) VALUES ('SQL 101')
