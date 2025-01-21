@@ -102,11 +102,11 @@ db.commit()
 # getting lessons_id
 cursor.execute("SELECT id FROM lessons WHERE title = %s", (lesson1,))
 german_reading_id = cursor.fetchone()['id']
-cursor.execute(f"SELECT id FROM lessons WHERE title = %s", (lesson2,))
+cursor.execute("SELECT id FROM lessons WHERE title = %s", (lesson2,))
 german_writing_id = cursor.fetchone()['id']
-cursor.execute(f"SELECT id FROM lessons WHERE title = %s", (lesson3,))
+cursor.execute("SELECT id FROM lessons WHERE title = %s", (lesson3,))
 spanish_reading_id = cursor.fetchone()['id']
-cursor.execute(f"SELECT id FROM lessons WHERE title = %s", (lesson4,))
+cursor.execute("SELECT id FROM lessons WHERE title = %s", (lesson4,))
 spanish_writing_id = cursor.fetchone()['id']
 
 # creating marks
@@ -136,17 +136,18 @@ SELECT students.name,
        lessons.title AS lesson,
        marks.value   AS mark
 FROM   students
-       JOIN books
-         ON students.id = books.taken_by_student_id
-       JOIN `groups`
-         ON students.group_id = groups.id
-       JOIN marks
-         ON students.id = marks.student_id
-       JOIN lessons
-         ON marks.lesson_id = lessons.id
-       JOIN subjets 
-         ON lessons.subject_id = subjets.id 
-       WHERE name = %s and second_name = %s
+JOIN   books
+ON     students.id = books.taken_by_student_id
+JOIN   `groups`
+ON     students.group_id = groups.id
+JOIN   marks
+ON     students.id = marks.student_id
+JOIN   lessons
+ON     marks.lesson_id = lessons.id
+JOIN   subjets
+ON     lessons.subject_id = subjets.id
+WHERE  name = %s
+AND    second_name = %s 
 '''
 cursor.execute(query, (fetch_result['name'], fetch_result['second_name']))
 print(cursor.fetchall())
