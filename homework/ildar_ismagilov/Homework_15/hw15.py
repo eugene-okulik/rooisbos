@@ -1,6 +1,5 @@
 import mysql.connector as mysql
 
-
 # creating connection
 db = mysql.connect(
     user='st-onl',
@@ -45,7 +44,7 @@ db.commit()
 # updating student's group
 query = "UPDATE students SET group_id = %s WHERE id = %s"
 values = (group_id, student_id)
-cursor.execute(query,values)
+cursor.execute(query, values)
 cursor.execute("SELECT * FROM students WHERE id = %s", (student_id,))
 print(cursor.fetchone())
 db.commit()
