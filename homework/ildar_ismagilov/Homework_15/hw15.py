@@ -147,7 +147,7 @@ ON     marks.lesson_id = lessons.id
 JOIN   subjets
 ON     lessons.subject_id = subjets.id
 WHERE  name = %s
-AND second_name = %s 
+AND second_name = %s
 '''
 cursor.execute(query, (fetch_result['name'], fetch_result['second_name']))
 print(cursor.fetchall())
