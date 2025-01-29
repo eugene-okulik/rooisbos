@@ -10,7 +10,17 @@ def analyzer(path, text_to_find):
             for line_number, line in enumerate(f.readlines(), start=1):
                 index_of_line = line.find(text_to_find)
                 if index_of_line != -1:
-                    slice = line[index_of_line - 5:len(text_to_find) + index_of_line + 5]
+                    left_piece = line[: index_of_line]
+                    right_piece = line[len(text_to_find) + index_of_line:]
+                    splitted_left_piece = left_piece.split()
+                    splitted_right_piece = right_piece.split()
+                    left_words = ' '.join(splitted_left_piece[-5:])
+                    right_words = ' '.join(splitted_right_piece[:5])
+                    if left_piece[-1] == ' ':
+                        left_words += ' '
+                    if right_piece[0] == ' ':
+                        right_words = ' ' + right_words
+                    slice = left_words + text_to_find + right_words
                     yield slice, file, line_number
 
 
