@@ -1,5 +1,6 @@
 import requests
 
+
 def create_object():
     body = {
         "name": "IIM2asdf",
@@ -26,8 +27,10 @@ def new_object():
     )
     return response.json()['id']
 
+
 def clear(post_id):
     requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+
 
 def change_object():
     post_id = new_object()
