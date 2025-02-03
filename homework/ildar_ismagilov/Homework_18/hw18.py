@@ -28,12 +28,12 @@ def new_object():
     return response.json()['id']
 
 
-def clear(post_id):
-    requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+def clear(object_id):
+    requests.delete(f'http://167.172.172.115:52353/object/{object_id}')
 
 
 def change_object():
-    post_id = new_object()
+    object_id = new_object()
     body = {
         "name": "IIM_22",
         "data": {
@@ -41,26 +41,26 @@ def change_object():
             "size": "XXXXXLCCCL"
         }
     }
-    response = requests.put(f'http://167.172.172.115:52353/object/{post_id}', json=body).json()
+    response = requests.put(f'http://167.172.172.115:52353/object/{object_id}', json=body).json()
     assert response['name'] == 'IIM_22'
     assert response['data']['color'] == 'black'
     assert response['data']['size'] == 'XXXXXLCCCL'
-    clear(post_id)
+    clear(object_id)
 
 
 def change_object_partly():
-    post_id = new_object()
+    object_id = new_object()
     body = {
         "name": "sdfasdfasdfasdf"
     }
-    response = requests.patch(f'http://167.172.172.115:52353/object/{post_id}', json=body).json()
+    response = requests.patch(f'http://167.172.172.115:52353/object/{object_id}', json=body).json()
     assert response['name'] == 'sdfasdfasdfasdf', 'Name has not been changed'
-    clear(post_id)
+    clear(object_id)
 
 
 def delete_object():
-    post_id = new_object()
-    response = requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+    object_id = new_object()
+    response = requests.delete(f'http://167.172.172.115:52353/object/{object_id}')
     assert response.status_code == 200, 'Object is not deleted'
 
 
