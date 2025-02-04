@@ -50,7 +50,8 @@ def test_change_object_partly(creating_and_clearing_the_object):
     body = {
         "name": "sdfasdfasdfasdf"
     }
-    response = requests.patch(f'http://167.172.172.115:52353/object/{creating_and_clearing_the_object}', json=body).json()
+    response = requests.patch(f'http://167.172.172.115:52353/object/{creating_and_clearing_the_object}',
+                              json=body).json()
     assert response['name'] == 'sdfasdfasdfasdf', 'Name has not been changed'
 
 
