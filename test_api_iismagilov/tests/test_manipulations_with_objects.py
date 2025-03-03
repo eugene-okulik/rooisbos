@@ -6,12 +6,12 @@ TEST_DATA = [
 ]
 
 @pytest.mark.parametrize('data', TEST_DATA)
-def test_create_object(precondition_create_an_object, data):
-    precondition_create_an_object.create_some_object(data)
-    precondition_create_an_object.check_that_status_is_200()
-    precondition_create_an_object.checking_color_of_new_object(data['data']['color'])
+def test_create_object(create_object_endpoint, data):
+    create_object_endpoint.create_some_object(data)
+    create_object_endpoint.check_that_status_is_200()
+    create_object_endpoint.checking_color_of_new_object(data['data']['color'])
 
-def test_change_an_object(precondition_change_an_object):
+def test_change_an_object(temp_object,change_object_endpoint):
     body = {
         "name": "IIM_neew",
         "data": {
@@ -19,17 +19,17 @@ def test_change_an_object(precondition_change_an_object):
             "size": "M"
         }
     }
-    precondition_change_an_object.make_changes_to_object(object_id=10, payload=body)
-    precondition_change_an_object.check_that_status_is_200()
-    precondition_change_an_object.checking_color_of_new_object(body['data']['color'])
+    change_object_endpoint.make_changes_to_object(object_id=temp_object['id'], payload=body)
+    change_object_endpoint.check_that_status_is_200()
+    change_object_endpoint.checking_color_of_new_object(body['data']['color'])
 
-def test_change_an_object_partly(precondition_change_an_object_partly):
+def test_change_an_object_partly(temp_object,change_object_partly_endpoint):
     body = {"name": "sdfasdfasdfasdf"}
-    precondition_change_an_object_partly.make_partly_changes_to_object(object_id=11, payload=body)
-    precondition_change_an_object_partly.check_that_status_is_200()
-    precondition_change_an_object_partly.check_name_of_new_object(body['name'])
+    change_object_partly_endpoint.make_partly_changes_to_object(object_id=temp_object['id'], payload=body)
+    change_object_partly_endpoint.check_that_status_is_200()
+    change_object_partly_endpoint.check_name_of_new_object(body['name'])
 
-@pytest.mark.parametrize('data', TEST_DATA)
-def test_delete_an_object(precondition_create_an_object, data):
-    precondition_create_an_object.create_some_object(data)
-    precondition_create_an_object.
+def test_delete_an_object(temp_object, delete_object_endpoint):
+    delete_object_endpoint.delete_an_object(temp_object['id'])
+    delete_object_endpoint.check_that_status_is_200()
+
