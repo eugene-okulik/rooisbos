@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 from test_api_iismagilov.endpoints.create_an_object import CreateObject
 from test_api_iismagilov.endpoints.change_an_object import UpdateObject
@@ -17,7 +18,9 @@ def temp_object():
     }
     temp_object = CreateObject()
     temp_object.create_some_object(body)
-    return temp_object.response_formatted_to_json
+    yield temp_object.response_formatted_to_json
+    deleted_object = DeleteObject()
+    deleted_object.deleting_the_object(temp_object.response_formatted_to_json['id'])
 
 
 @pytest.fixture()

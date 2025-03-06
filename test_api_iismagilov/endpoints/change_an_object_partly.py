@@ -2,6 +2,7 @@ import requests
 import allure
 from test_api_iismagilov.endpoints.endpoint import Endpoint
 
+
 class PartlyUpdateObject(Endpoint):
 
     @allure.step('Sending patch request')
