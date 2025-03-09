@@ -48,4 +48,4 @@ class TestApi(HttpUser):
                           json={"name": "II_object_4"})
 
     def on_stop(self):
-        delete_the_object = self.client.delete(f'/object/{self.object_id}')
+        self.client.delete(f'/object/{self.object_id}')
